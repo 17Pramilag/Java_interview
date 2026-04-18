@@ -632,3 +632,33 @@ The Trick: Seeing if you know how to make data 100% safe.
 Answer: Yes. By making a class immutable (all fields final, no setters, class is final), you achieve perfect encapsulation because 
 the state can never be changed after creation. This is excellent for "Account User Details" or "Research Reports" that should not be altered once generated.
 
+---------------------------Inheritance --------------------
+Q : Why does Java not support Multiple Inheritance with classes?
+Ans - The Concept: A class cannot extend more than one parent class (e.g., class C extends A, B is invalid).
+
+The Reason: This avoids the Diamond Problem, where if both parents have a method with the same name, 
+the compiler wouldn't know which one the child should inherit.
+
+Q : Can a constructor be inherited?
+Answer : No. Constructors are not members of a class and therefore are not inherited. However, a subclass 
+constructor always calls the parent constructor (either implicitly or using super()) before executing its own code.
+
+Q : What happens if the parent class has a parameterized constructor but no default constructor?
+Ans :  The subclass must explicitly call the parent’s parameterized constructor using super(args) 
+in its own constructor. If not, the code will fail to compile.
+
+Q : Can you prevent a class from being inherited?
+Answer: Yes, by using the final keyword. A final class cannot be extended.
+
+
+------------------------ Ploymorphism---------------------
+Q : Compile-time Polymorphism (Method Overloading)
+Ans : This occurs when multiple methods in the same class have the same name but different parameters (different type, number, or order of arguments). The compiler determines which method to call during compilation.
+
+Simple Example: A calculate() method that can handle either two integers or two doubles.
+
+Q : Runtime Polymorphism (Method Overriding)
+Ans : This occurs when a subclass provides a specific implementation of a method that is already defined in its superclass or interface. The JVM determines which method to call at runtime based on the actual object type.
+
+The Key Tool: Upcasting. This is when you treat a child object as its parent type (e.g., List list = new ArrayList();).
+
