@@ -1,0 +1,45 @@
+# SpringBoot 
+
+ ### EXL ###
+Q : Explain the spring bean cycle ?
+Ans : 
+
+
+Q : How Does spring data JPA's @Transactional work ? Which propogation do you use most ?
+Ans : 
+
+Q : If a method @Transactional called from another method inside the same class, will it work ?
+Ans : No, 
+
+Q : What is difference between field injectio and construction injection? which is preferred?
+Ans : 
+
+Q : How would you implemet inter service communication in springboot microservice architecture ?
+Ans : 
+
+Q : Can you explain N+1 select problem and how would you fix it ?
+Ans : 
+
+Q : How does spring handle thread safety for singleton beans ?
+Ans : 
+
+Q : What happens if you have two beans of the same type in spring ?
+Ans : 
+
+Q : Why might @Asyn not work in springboot application ?
+Ans : 
+
+Q : How do you prevent cascading failures when a downstream services slow ?
+Ans : 
+
+Q ; What is difference between Authentication and Authorization ?
+Ans : 
+
+Q : How does @PreAuthorize anotation work ?
+Ans : 
+
+Q : what is difference between @Cacheable and manual redis cache ?
+Ans : 
+
+Q : What is difference between @Component , @Service , @Repository annotation ?
+Ans : 
