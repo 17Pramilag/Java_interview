@@ -662,3 +662,14 @@ Ans : This occurs when a subclass provides a specific implementation of a method
 
 The Key Tool: Upcasting. This is when you treat a child object as its parent type (e.g., List list = new ArrayList();).
 
+
+
+##Paytm
+Q : How inheritance work in try-catch block ?
+Ans : 
+
+Q: If you have both superclass and subclass, what happenes if you change the return type later ?
+Ans : 
+
+
+
