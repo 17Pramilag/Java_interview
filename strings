@@ -1,0 +1,149 @@
+
+Q : Why is String Immutable in Java?
+Ans : 
+* String Pool (Memory Efficiency): Java saves memory by sharing one String object among multiple references. If Strings were mutable, changing one would affect all others.
+
+* Security: Strings are used for Database URLs, Usernames, and Passwords. If they could be changed, an attacker could alter these values after validation.
+
+* Thread Safety: Because they cannot change, they are inherently thread-safe. Multiple threads can share a String without synchronization.
+
+* Caching HashCode: Since the content doesn't change, the hashCode is calculated once and cached. This makes Strings perfect keys for HashMap.
+
+Benefits in Multithreaded Environments : 
+* Thread Safety without Synchronization: Since the state of a String cannot be modified, multiple threads can read the same String 
+object simultaneously without any risk of data corruption or "race conditions." You don't need synchronized blocks or locks.
+* Eliminates Side Effects: When you pass a String to a method or another thread, you don't have to worry about that thread 
+changing the value. You are essentially passing a "read-only" value.
+* Consistent State: A thread will never see a String in a "partially modified" state. It either sees the original string or a 
+completely new one created by another operation.
+* No Reference Leakage: You can safely return a String from a getter method without creating a defensive copy (unlike a Date 
+object or a List), knowing that the caller cannot change the internal state of your class.
+
+Q : String vs. StringBuilder vs. StringBuffer
+
+
+Q: How to convert String to LocalDate?
+Ans : 
+String dateStr = "2026-04-18";
+LocalDate date = LocalDate.parse(dateStr); // Default ISO format
+
+// For custom formats:
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+LocalDate customDate = LocalDate.parse("18-04-2026", formatter);
+
+Q : Reverse a String without using reverse()
+Ans : 
+String str = "Java";
+StringBuilder sb = new StringBuilder();
+for (int i = str.length() - 1; i >= 0; i--) {
+    sb.append(str.charAt(i));
+}
+String reversed = sb.toString();
+
+
+Q : Check if a String is Palindrome
+Ans : 
+public boolean isPalindrome(String str) {
+    int i = 0, j = str.length() - 1;
+    while (i < j) {
+        if (str.charAt(i++) != str.charAt(j--)) return false;
+    }
+    return true;
+}
+
+Q : Find first non-repeated character in a String
+Ans : Use a LinkedHashMap to preserve the order of characters.
+public char firstNonRepeated(String str) {
+    Map<Character, Integer> map = new LinkedHashMap<>();
+    for (char c : str.toCharArray()) map.put(c, map.getOrDefault(c, 0) + 1);
+    for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+        if (entry.getValue() == 1) return entry.getKey();
+    }
+    return ' ';
+}
+
+Q : Find first repeated character in a String
+Ans : Use a HashSet for $O(1)$ lookup.
+
+public char firstRepeated(String str) {
+    Set<Character> set = new HashSet<>();
+    for (char c : str.toCharArray()) {
+        if (set.contains(c)) return c;
+        set.add(c);
+    }
+    return ' ';
+}
+
+Q : Count frequency of each character in a String
+Ans : 
+public void charFrequency(String str) {
+    Map<Character, Integer> map = new HashMap<>();
+    for (char c : str.toCharArray()) map.put(c, map.getOrDefault(c, 0) + 1);
+    System.out.println(map);
+}
+
+Q : Check if two Strings are Anagrams
+Ans : 
+public boolean areAnagrams(String s1, String s2) {
+    if (s1.length() != s2.length()) return false;
+    int[] counts = new int[256]; // Frequency array
+    for (int i = 0; i < s1.length(); i++) {
+        counts[s1.charAt(i)]++;
+        counts[s2.charAt(i)]--;
+    }
+    for (int count : counts) if (count != 0) return false;
+    return true;
+}
+
+Q : Remove duplicate characters from a String
+Ans : 
+public String removeDuplicates(String str) {
+    StringBuilder sb = new StringBuilder();
+    Set<Character> set = new LinkedHashSet<>();
+    for (char c : str.toCharArray()) set.add(c);
+    for (char c : set) sb.append(c);
+    return sb.toString();
+}
+
+Q : Find longest substring without repeating characters
+Ans : 
+public int lengthOfLongestSubstring(String s) {
+    int max = 0, i = 0, j = 0;
+    Set<Character> set = new HashSet<>();
+    while (j < s.length()) {
+        if (!set.contains(s.charAt(j))) {
+            set.add(s.charAt(j++));
+            max = Math.max(max, set.size());
+        } else {
+            set.remove(s.charAt(i++));
+        }
+    }
+    return max;
+}
+
+Q : Check if String contains only digits
+Ans : 
+public boolean isOnlyDigits(String str) {
+    return str.matches("\\d+");
+}
+
+Q : Capitalize first letter of each word
+Ans : 
+public String capitalize(String str) {
+    String[] words = str.split("\\s+");
+    StringBuilder sb = new StringBuilder();
+    for (String w : words) {
+        sb.append(Character.toUpperCase(w.charAt(0))).append(w.substring(1)).append(" ");
+    }
+    return sb.toString().trim();
+}
+
+Q : Find longest string in a list (Java 8)
+Ans : 
+List<String> list = Arrays.asList("Java", "Microservices", "TCS");
+String longest = list.stream()
+    .max(Comparator.comparingInt(String::length))
+    .get();
+
+
+Q : 
